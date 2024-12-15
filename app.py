@@ -8,7 +8,7 @@ class App:
     def __init__(self, root):
         self.root = root
         self.root.title("Open Web")
-        self.root.geometry("280x400")
+        self.root.geometry("300x450")  # Tamanho aumentado
         self.root.resizable(False, False)  # Não permite redimensionar a janela
         self.root.configure(bg="#f2f2f2")  # Cor de fundo moderna
         
@@ -43,25 +43,27 @@ class App:
         self.listbox_frame = ttk.Frame(root)
         self.listbox_frame.pack(pady=(5, 15))
 
-        self.listbox = tk.Listbox(self.listbox_frame, width=30, height=6, font=("Segoe UI", 10), selectmode=tk.SINGLE, bd=0, highlightthickness=0)
+        self.listbox = tk.Listbox(self.listbox_frame, width=35, height=6, font=("Segoe UI", 10), selectmode=tk.SINGLE, bd=0, highlightthickness=0)
         self.listbox.grid(row=0, column=0, padx=5, pady=5)
 
         self.scrollbar = ttk.Scrollbar(self.listbox_frame, orient="vertical", command=self.listbox.yview)
         self.scrollbar.grid(row=0, column=1, sticky="ns")
         self.listbox.config(yscrollcommand=self.scrollbar.set)
 
-        # Botões na parte inferior
+        # Botões organizados em duas linhas
         self.button_frame = ttk.Frame(root)
         self.button_frame.pack(pady=(10, 0))
 
-        self.add_button = ttk.Button(self.button_frame, text="+", command=self.adicionar_site, width=3)
-        self.add_button.grid(row=0, column=0, padx=(5, 10))
+        # Primeira linha de botões
+        self.add_button = ttk.Button(self.button_frame, text="Adicionar Link", command=self.adicionar_site, width=12)
+        self.add_button.grid(row=0, column=0, padx=(10, 5), pady=(0, 5))
 
-        self.open_button = ttk.Button(self.button_frame, text="✓", command=self.abrir_sites, width=3)
-        self.open_button.grid(row=0, column=1, padx=(5, 10))
+        self.open_button = ttk.Button(self.button_frame, text="Abrir Sites", command=self.abrir_sites, width=12)
+        self.open_button.grid(row=0, column=1, padx=(5, 10), pady=(0, 5))
 
-        self.delete_button = ttk.Button(self.button_frame, text="x", command=self.excluir_site, width=3)
-        self.delete_button.grid(row=0, column=2, padx=(5, 10))
+        # Segunda linha de botões
+        self.delete_button = ttk.Button(self.button_frame, text="Excluir Site", command=self.excluir_site, width=12)
+        self.delete_button.grid(row=1, column=0, columnspan=2, pady=(5, 0))
 
         # Carregar os sites na interface
         self.atualizar_lista()
@@ -148,8 +150,8 @@ class App:
 
     def centralizar_janela(self):
         """Centraliza a janela na tela."""
-        window_width = 280
-        window_height = 400
+        window_width = 300
+        window_height = 450
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
 
